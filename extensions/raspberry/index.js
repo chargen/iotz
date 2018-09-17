@@ -3,7 +3,7 @@
 //  Licensed under the MIT license.
 // ----------------------------------------------------------------------------
 
-const colors = require('colors/safe');
+const colors = require('colors');
 const path = require('path');
 const fs = require('fs');
 

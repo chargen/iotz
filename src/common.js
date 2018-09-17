@@ -3,7 +3,7 @@
 //  Licensed under the MIT license.
 // ----------------------------------------------------------------------------
 
-const colors = require('colors/safe');
+const colors = require('colors');
 const fs     = require('fs');
 const path   = require('path');
 const rimraf = require('rimraf');
@@ -194,7 +194,7 @@ docker run --rm --name ${active_instance} -t -v \
 /bin/bash -c "${runCmd}"\
 `;
 
-  var prc = exec(batchString, {stdio:'inherit', maxBuffer: 1024 * 8192}, function(err) {
+  var prc = exec(batchString, {stdio:'inherit', maxBuffer: 2048 * 8192}, function(err) {
     if ((err + "").indexOf('Unable to find image') > 0) {
       console.log("\n -", colors.bold('image was already removed?'));
     }
@@ -325,7 +325,7 @@ exports.runCommand = function(args, compile_path) {
     execCommand(args, compile_path, runCmd, config, function(err) {
       if (err) {
         if (typeof err.message === "string" && err.message.indexOf("Command failed") < 0) {
-          console.error(" -", colors.magenta('message'), err.message);
+          console.error(" -", colors.yellow('message'), err.message);
         }
         process.exit(1);
         return;

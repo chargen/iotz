@@ -3,7 +3,7 @@
 //  Licensed under the MIT license.
 // ----------------------------------------------------------------------------
 
-const colors = require('colors/safe');
+const colors = require('colors');
 const fs     = require('fs');
 const path   = require('path');
 const execSync = require('child_process').execSync;
@@ -324,7 +324,7 @@ exports.buildCommands = function arduinoBuild(config, runCmd, command, compile_p
       for (let file of files) {
         if (path.extname(file).toLowerCase() == '.ino') {
           console.log(" -", colors.yellow("warning"));
-          console.log(" -", "picked", colors.magenta(file), " automatically as a project file");
+          console.log(" -", "picked", colors.yellow(file), " automatically as a project file");
           console.log(" -", "you can define it from 'iotz.json' 'filename'");
           config.filename = file;
           break;
@@ -467,7 +467,7 @@ clean :
 `;
     fs.writeFileSync(path.join(compile_path, 'Makefile'), makefile);
     console.log(colors.green("Makefile"), "is ready.\nTry ",
-        colors.magenta('iotz make -j2'));
+        colors.yellow('iotz make -j2'));
   } else {
     console.error(" -", colors.red("error :"),
               "Unknown command", command);

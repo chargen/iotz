@@ -6,7 +6,7 @@
 const fs = require('fs');
 const path = require('path');
 const execSync = require('child_process').execSync;
-const colors = require('colors/safe');
+const colors = require('colors');
 
 exports.requireExtension = function (name, no_fail) {
   try {
@@ -20,7 +20,7 @@ exports.requireExtension = function (name, no_fail) {
       return require(name);
     } catch (__) {
       if (!no_fail) {
-        console.error(" - error:", colors.red('extension'), name, "not found");
+        console.error(" - error:", colors.yellow('extension'), name, "not found");
         process.exit(1);
       }
     }
@@ -120,7 +120,7 @@ exports.createContainer = function(name) {
   var extInfo = rext ? rext.createExtension() : {run: ""};
 
   if (rext) {
-    console.log(" -", "building", colors.magenta(name), 'extension container',
+    console.log(" -", "building", colors.yellow(name), 'extension container',
                 colors.gray('(it may take some time)'));
   }
 
